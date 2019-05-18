@@ -20,6 +20,11 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "@fortawesome/angular-fontawesome": "^0.3.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.18",
+    "@fortawesome/free-brands-svg-icons": "^5.8.2",
+    "@fortawesome/free-solid-svg-icons": "^5.8.2",
+    "add": "^2.0.6",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "firebase": "^6.0.2",
@@ -27,6 +32,7 @@
     "popper.js": "^1.15.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
+    "yarn": "^1.16.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

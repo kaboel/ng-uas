@@ -1,6 +1,31 @@
-# FaiqAllamTI2A
+# NgUas
+A College Final Project...
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
+
+## Prerequisites & Setup
+
+- **[Node.js](https://nodejs.org/en/)**
+- **[AngularCLI](https://angular.io)**
+- **[Firebase](https://firebase.google.com/)**
+
+Navigate to project directory then run `npm install` to install dependencies.
+Create a file called <b>environment.ts</b> inside [src/environments](https://github.com/kaboel/ng-uas/tree/master/src/environments) folder, refer to <b>environment.example.ts</b> for reference,
+edit this section :
+````typescript
+...
+firebase: {
+    apiKey: '#',
+    authDomain: '#',
+    databaseURL: '#',
+    projectId: '#',
+    storageBucket: '#',
+    messagingSenderId: '#',
+    appId: '#'
+}
+...
+````
+please refer to your firebase app config.
 
 ## Development server
 
