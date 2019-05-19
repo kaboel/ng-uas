@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {faExclamationCircle} from '@fortawesome/free-solid-svg-icons/faExclamationCircle';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ContactService} from '../../core/services/contact.service';
 
 @Component({
     selector: 'app-contact-me',
@@ -14,7 +15,8 @@ export class ContactMeComponent implements OnInit {
     faExclamationCircle = faExclamationCircle;
 
     constructor(
-        public formBuilder: FormBuilder
+        public formBuilder: FormBuilder,
+        public contactService: ContactService
     ) {
     }
 
@@ -35,6 +37,12 @@ export class ContactMeComponent implements OnInit {
         });
     }
 
-    get key() { return this.contactMeForm.controls; }
+    get key() {
+        return this.contactMeForm.controls;
+    }
 
+    onSubmit() {
+        this.contactService.addContact(this.contactMeForm.value);
+        this.contactMeForm.reset();
+    }
 }

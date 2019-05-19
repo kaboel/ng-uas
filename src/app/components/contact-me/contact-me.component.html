@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="container">
+<div class="container mb-10">
     <div class="row justify-content-center">
         <div class="col-md-4 mb-3 text-center">
             <h3>Contact Me</h3>
@@ -30,7 +30,7 @@
                            formControlName="email">
                     <small class="text-danger" *ngIf="key.email.invalid && (key.email.dirty || key.email.touched)">
                         <fa-icon *ngIf="key.email.invalid" [icon]="faExclamationCircle"></fa-icon>&nbsp;
-                        <span *ngIf="key.email.invalid && key.email.errors.required">Email required !</span>
+                        <span *ngIf="key.email.invalid && key.email.errors.required">Email Address required !</span>
                         <span *ngIf="key.email.invalid && key.email.errors.email">Invalid Email format !</span>
                     </small>
                 </div>
@@ -42,7 +42,8 @@
                               placeholder="Type in your message here..."
                               formControlName="message"
                               [ngClass]="key.message.invalid && (key.message.dirty || key.message.touched) ? 'border-danger' : ''"></textarea>
-                    <small class="text-danger" *ngIf="key.message.invalid && (key.message.dirty || key.message.touched)">
+                    <small class="text-danger"
+                           *ngIf="key.message.invalid && (key.message.dirty || key.message.touched)">
                         <fa-icon *ngIf="key.message.invalid" [icon]="faExclamationCircle"></fa-icon>&nbsp;
                         <span *ngIf="key.message.invalid && key.message.errors.required">Message required !</span>
                         <span *ngIf="key.message.invalid && key.message.errors.minlength">Message must have at least 80 characters !</span>
@@ -52,12 +53,15 @@
             <div class="form-group row text-right">
                 <label class="col-form-label col-md-3"></label>
                 <div class="col-md-8">
-                    <button type="button" class="btn btn-primary" [disabled]="!contactMeForm.valid">
+                    <button type="submit" class="btn btn-primary"
+                            (click)="onSubmit()"
+                            [disabled]="!contactMeForm.valid">
                         Submit
                     </button>
                 </div>
             </div>
         </form>
     </div>
+    <app-contact-list class="row justify-content-center"></app-contact-list>
 </div>
 <app-footer></app-footer>
