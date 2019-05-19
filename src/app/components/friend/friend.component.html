@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<div class="container mb-10">
+    <div class="row justify-content-center">
+        <div class="col-md-4 mb-3 text-center">
+            <h3>Friend List</h3>
+        </div>
+    </div>
+    <form [formGroup]="friendForm">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="form-group row">
+                    <label for="name" class="col-form-label col-md-3 text-right">Name</label>
+                    <div class="col-md-7">
+                        <input id="name" type="text" class="form-control"
+                               [ngClass]="key.name.invalid && (key.name.dirty || key.name.touched) ? 'border-danger' : ''"
+                               placeholder="e.g. Alfuzzy Vausta Arramadhan"
+                               formControlName="name">
+                        <small class="text-danger" *ngIf="key.name.invalid && (key.name.dirty || key.name.touched)">
+                            <fa-icon *ngIf="key.name.invalid" [icon]="faExclamationCircle"></fa-icon>&nbsp;
+                            <span *ngIf="key.name.invalid && key.name.errors.required">Name required !</span>
+                            <span *ngIf="key.name.invalid && key.name.errors.minlength">Name must have at least 5 characters !</span>
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-form-label col-md-3 text-right">Email</label>
+                    <div class="col-md-7">
+                        <input id="email" type="text" class="form-control"
+                               [ngClass]="key.email.invalid && (key.email.dirty || key.email.touched) ? 'border-danger' : ''"
+                               placeholder="e.g. example@email.com"
+                               formControlName="email">
+                        <small class="text-danger" *ngIf="key.email.invalid && (key.email.dirty || key.email.touched)">
+                            <fa-icon *ngIf="key.email.invalid" [icon]="faExclamationCircle"></fa-icon>&nbsp;
+                            <span *ngIf="key.email.invalid && key.email.errors.required">Email required !</span>
+                            <span *ngIf="key.email.invalid && key.email.errors.email">Invalid Email format !</span>
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="contact" class="col-form-label col-md-3 text-right">Contact No.</label>
+                    <div class="col-md-7">
+                        <input id="contact" type="text" class="form-control"
+                               [ngClass]="key.contact.invalid && (key.contact.dirty || key.contact.touched) ? 'border-danger' : ''"
+                               placeholder="e.g. 081234567891"
+                               formControlName="contact">
+                        <small class="text-danger" *ngIf="key.contact.invalid && (key.contact.dirty || key.contact.touched)">
+                            <fa-icon *ngIf="key.contact.invalid" [icon]="faExclamationCircle"></fa-icon>&nbsp;
+                            <span *ngIf="key.contact.invalid && key.contact.errors.required">Contact Number required !</span>
+                            <span *ngIf="key.contact.invalid && key.contact.errors.pattern">Invalid format ! Contact number must be number !</span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-2 mt-2">
+                <button type="submit" class="btn btn-success btn-block"
+                        [disabled]="!friendForm.valid"
+                        (click)="onSubmit()">
+                    <fa-icon [icon]="faPlus"></fa-icon>&nbsp;
+                    Add Friend
+                </button>
+            </div>
+        </div>
+    </form>
+    <app-friend-list class="row justify-content-center"></app-friend-list>
+</div>
+<app-footer></app-footer>
