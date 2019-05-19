@@ -5,37 +5,48 @@
             <h3>Register Account</h3>
         </div>
     </div>
+    <form [formGroup]="registerForm">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="form-group row text-right">
-                <label for="email" class="col-form-label col-md-4">Email Address</label>
+            <div class="form-group row">
+                <label for="email" class="col-form-label col-md-4 text-right">Email Address</label>
                 <div class="col-md-6">
-                    <input id="email" type="text" class="form-control" placeholder="e.g. example@email.com" #userEmail>
-                    <small class="text-danger">
-                        Error Message
-                        &nbsp;<fa-icon [icon]="faExclamationCircle"></fa-icon>
+                    <input id="email" type="text" class="form-control"
+                           placeholder="e.g. example@email.com"
+                           [ngClass]="key.email.invalid && (key.email.dirty || key.email.touched) ? 'border-danger' : ''"
+                           formControlName="email">
+                    <small class="text-danger" *ngIf="key.email.invalid && (key.email.dirty || key.email.touched)">
+                        <fa-icon *ngIf="key.email.invalid" [icon]="faExclamationCircle"></fa-icon>&nbsp;
+                        <span *ngIf="key.email.invalid && key.email.errors.required">Email required !</span>
+                        <span *ngIf="key.email.invalid && key.email.errors.email">Invalid Email format !</span>
                     </small>
                 </div>
             </div>
-            <div class="form-group row text-right">
-                <label for="password" class="col-form-label col-md-4">Password</label>
+            <div class="form-group row">
+                <label for="password" class="col-form-label col-md-4 text-right">Password</label>
                 <div class="col-md-6">
                     <input id="password" type="password" class="form-control"
-                           placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" #password>
-                    <small class="text-danger">
-                        Error Message
-                        &nbsp;<fa-icon [icon]="faExclamationCircle"></fa-icon>
+                           placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+                           [ngClass]="key.pwd.invalid && (key.pwd.dirty || key.pwd.touched) ? 'border-danger' : ''"
+                           formControlName="pwd">
+                    <small class="text-danger" *ngIf="key.pwd.invalid && (key.pwd.dirty || key.pwd.touched)">
+                        <fa-icon [icon]="faExclamationCircle"></fa-icon>&nbsp;
+                        <span *ngIf="key.pwd.invalid && key.pwd.errors.required">Password required !</span>
+                        <span *ngIf="key.pwd.invalid && key.pwd.errors.minlength">Password must have at least 6 characters !</span>
                     </small>
                 </div>
             </div>
-            <div class="form-group row text-right">
-                <label for="passwordVer" class="col-form-label col-md-4">Password Verification</label>
+            <div class="form-group row">
+                <label for="passwordVer" class="col-form-label col-md-4 text-right">Password Verification</label>
                 <div class="col-md-6">
                     <input id="passwordVer" type="password" class="form-control"
-                           placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" #passwordVer>
-                    <small class="text-danger">
-                        Error Message
-                        &nbsp;<fa-icon [icon]="faExclamationCircle"></fa-icon>
+                           placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+                           [ngClass]="key.pwdVer.invalid && (key.pwdVer.dirty || key.pwdVer.touched) ? 'border-danger': ''"
+                           formControlName="pwdVer">
+                    <small class="text-danger" *ngIf="key.pwdVer.invalid && (key.pwdVer.dirty || key.pwdVer.touched)">
+                        <fa-icon *ngIf="key.pwdVer.invalid" [icon]="faExclamationCircle"></fa-icon>&nbsp;
+                        <span *ngIf="key.pwdVer.invalid && key.pwdVer.errors.required">Password Verification required !</span>
+                        <span *ngIf="key.pwdVer.invalid && key.pwdVer.errors.mustMatch">Password do not match !</span>
                     </small>
                 </div>
             </div>
@@ -43,9 +54,10 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-2">
-            <button type="button" class="btn btn-primary btn-block">Sign Up</button>
+            <button type="button" class="btn btn-primary btn-block" [disabled]="!registerForm.valid">Sign Up</button>
         </div>
     </div>
+    </form>
     <div class="row justify-content-center">
         <div class="col-md-4 text-center">
             <hr>

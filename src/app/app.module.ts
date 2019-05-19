@@ -7,7 +7,7 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {SignInComponent} from './components/sign-in/sign-in.component';
 import {SignUpComponent} from './components/sign-up/sign-up.component';
@@ -40,6 +40,7 @@ import {FriendService} from './core/services/friend.service';
         AngularFireAuthModule,
         AngularFirestoreModule,
         FormsModule,
+        ReactiveFormsModule,
         FontAwesomeModule,
     ],
     providers: [
