@@ -33,38 +33,49 @@ export class AuthService {
     signIn(email, password) {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then((result) => {
-                this.ngZone.run(() => {
-                    this.router.navigate(['dashboard']);
-                });
                 this.setUserData(result.user);
+                if (result.user.emailVerified) {
+                    this.ngZone.run(() => {
+                        this.router.navigate(['dashboard']);
+                        window.alert('Welcome' + this.userData.displayName);
+                    });
+                } else {
+                    window.alert('You are not verified ! Please check your email then follow the instructions.');
+                }
             }).catch((error) => {
                 window.alert(error.message);
             });
     }
 
+
     signUp(email, password) {
-        return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+        return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
             .then((result) => {
-                this.sendVerification();
                 this.setUserData(result.user);
+                this.sendVerification();
             }).catch((error) => {
-                window.alert(error);
+                window.alert(error.message);
             });
     }
 
     sendVerification() {
-        return this.afAuth.auth.currentUser.sendEmailVerification()
-            .then(() => {
+        this.afAuth.auth.onAuthStateChanged(user => {
+            user.sendEmailVerification().then(() => {
                 this.router.navigate(['verify']);
+                window.alert('Verification link sent !');
+            }).catch((error) => {
+                window.alert(error.message);
             });
+        });
     }
 
     forgotPassword(passwordResetEmail) {
         return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail)
             .then(() => {
                 window.alert('Password Reset link has been sent! Please check your Email');
+                this.router.navigate(['login']);
             }).catch((error) => {
-                window.alert(error);
+                window.alert(error.message);
             });
     }
 
@@ -85,7 +96,7 @@ export class AuthService {
                 });
                 this.setUserData(result.user);
             }).catch((error) => {
-                window.alert(error);
+                window.alert(error.message);
             });
     }
 
