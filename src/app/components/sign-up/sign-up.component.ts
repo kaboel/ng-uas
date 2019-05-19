@@ -33,12 +33,15 @@ export class SignUpComponent implements OnInit {
                 Validators.required,
                 Validators.minLength(6)
             ]],
-            pwdVer: ['', [
-                Validators.required
-            ]]
-        }, { validator: MustMatch('pwd', 'pwdVer') });
+            pwdVer: ['', Validators.required]
+        }, {validator: MustMatch('pwd', 'pwdVer')});
     }
 
-    get key() { return this.registerForm.controls; }
+    get key() {
+        return this.registerForm.controls;
+    }
 
+    onSubmit() {
+        this.authService.signUp(this.registerForm.get('email').value, this.registerForm.get('pwd').value);
+    }
 }
