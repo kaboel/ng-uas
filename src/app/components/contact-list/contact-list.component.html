@@ -1,0 +1,27 @@
+<div class="col-md-8">
+    <strong>Contacts : </strong>
+    <hr>
+    <div *ngIf="contacts?.length > 0; else noData">
+        <div *ngFor="let contact of contacts">
+            <div class="card mb-2 mt-1">
+                <div class="card-header">
+                    <button type="button" class="btn btn-danger btn-sm float-right"
+                            (click)="deleteData($event, contact)">
+                        <fa-icon [icon]="faTrash" class="fa-sm"></fa-icon>
+                    </button>
+                    <strong>{{ contact.name }}
+                        <small style="font-family: monospace"><{{ contact.email }}></small>
+                    </strong>
+                </div>
+                <div class="card-body">
+                    <span class="card-text">{{ contact.message }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #noData>
+        <div class="alert alert-warning text-center">
+            No Data Found.
+        </div>
+    </ng-template>
+</div>
