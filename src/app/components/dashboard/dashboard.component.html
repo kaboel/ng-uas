@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container mb-10">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-4">
             <div class="card text-center">
                 <div class="card-header text-muted">
                     Logged in as
@@ -13,6 +13,18 @@
                          src="{{(authService.userData.photoURL) ? authService.userData.photoURL : '/assets/images/user.jpg'}}">
                     <h2 class="card-title">{{(authService.userData.displayName) ? authService.userData.displayName : '-'}}</h2>
                     <p class="card-text">{{(authService.userData.email) ? authService.userData.email : '-'}}</p>
+                    <div *ngIf="authService.userData.emailVerified === true">
+                        <small class="badge badge-success">
+                            Email Verified
+                            <fa-icon [icon]="faCheck"></fa-icon>
+                        </small>
+                    </div>
+                    <div *ngIf="authService.userData.emailVerified === false">
+                        <small class="badge badge-danger">
+                            Email Unverified
+                            <fa-icon [icon]="faTimes"></fa-icon>
+                        </small>
+                    </div>
                 </div>
                 <div class="card-footer text-muted">
                     <small>{{(authService.userData.uid) ? authService.userData.uid : '-'}}</small>
