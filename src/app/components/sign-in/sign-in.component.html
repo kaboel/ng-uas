@@ -9,22 +9,26 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="text-right">
-                <label for="email" class="sr-only">Email</label>
-                <small class="text-danger">
-                    Error Message
-                    &nbsp;<fa-icon [icon]="faExclamationCircle"></fa-icon>
-                </small>
-                <input id="email" type="text" class="form-control" placeholder="Email Address" #userEmail>
-                <label for="password" class="sr-only">Password</label>
-                <small class="text-danger">
-                    Error Message
-                    &nbsp;<fa-icon [icon]="faExclamationCircle"></fa-icon>
-                </small>
-                <input id="password" type="password" class="form-control" placeholder="Password" #userPassword>
-            </div>
-            <button type="button" class="btn btn-primary btn-block mt-4">
+        <form class="col-md-4" [formGroup]="loginForm">
+            <label for="email" class="sr-only">Email</label>
+            <small class="text-danger" *ngIf="key.email.dirty || key.email.touched">
+                <fa-icon *ngIf="key.email.invalid" [icon]="faExclamationCircle"></fa-icon>&nbsp;
+                <span *ngIf="key.email.invalid && key.email.errors.required">Email required !</span>
+                <span *ngIf="key.email.invalid && key.email.errors.email">Invalid Email format !</span>
+            </small>
+            <input id="email" type="text" class="form-control mb-2" placeholder="Email Address"
+                   [ngClass]="key.email.invalid && (key.email.dirty || key.email.touched) ? 'border-danger' : ''"
+                   formControlName="email">
+            <label for="password" class="sr-only">Password</label>
+            <small class="text-danger" *ngIf="key.pwd.dirty || key.pwd.touched">
+                <fa-icon [icon]="faExclamationCircle"></fa-icon>&nbsp;
+                <span *ngIf="key.pwd.invalid && key.pwd.errors.required">Password required !</span>
+                <span *ngIf="key.pwd.invalid && key.pwd.errors.minlength">Password must have at least 6 characters !</span>
+            </small>
+            <input id="password" type="password" class="form-control" placeholder="Password"
+                   [ngClass]="key.pwd.invalid && (key.pwd.dirty || key.pwd.touched) ? 'border-danger' : ''"
+                   formControlName="pwd">
+            <button type="submit" class="btn btn-primary btn-block mt-4" [disabled]="!loginForm.valid">
                 Sign In
             </button>
             <div class="text-center">
@@ -32,7 +36,7 @@
                     <small>Forgot Password</small>
                 </a>
             </div>
-        </div>
+        </form>
     </div>
     <div class="row justify-content-center">
         <div class="col-md-4 text-center">
