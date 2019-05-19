@@ -20,6 +20,10 @@ import {FooterComponent} from './components/footer/footer.component';
 import {ContactMeComponent} from './components/contact-me/contact-me.component';
 import {ContactService} from './core/services/contact.service';
 import {FriendService} from './core/services/friend.service';
+import {ContactListComponent} from './components/contact-list/contact-list.component';
+import {FriendComponent} from './components/friend/friend.component';
+import {FriendListComponent} from './components/friend-list/friend-list.component';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 @NgModule({
     declarations: [
@@ -32,6 +36,9 @@ import {FriendService} from './core/services/friend.service';
         NavbarComponent,
         FooterComponent,
         ContactMeComponent,
+        ContactListComponent,
+        FriendListComponent,
+        FriendComponent,
     ],
     imports: [
         BrowserModule,
@@ -42,6 +49,7 @@ import {FriendService} from './core/services/friend.service';
         FormsModule,
         ReactiveFormsModule,
         FontAwesomeModule,
+        Ng2SearchPipeModule
     ],
     providers: [
         AuthService,
