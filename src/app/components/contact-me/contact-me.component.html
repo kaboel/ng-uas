@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4 mb-3 text-center">
+            <h3>Contact Me</h3>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <form class="col-md-8" [formGroup]="contactMeForm">
+            <div class="form-group row">
+                <label for="name" class="col-form-label col-md-3 text-right">Full Name</label>
+                <div class="col-md-8">
+                    <input type="text" id="name" class="form-control"
+                           placeholder="e.g. Alfuzzy Fausta Arramadhan"
+                           [ngClass]="key.name.invalid && (key.name.dirty || key.name.touched) ? 'border-danger' : ''"
+                           formControlName="name">
+                    <small class="text-danger" *ngIf="key.name.invalid && (key.name.dirty || key.name.touched)">
+                        <fa-icon *ngIf="key.name.invalid" [icon]="faExclamationCircle"></fa-icon>&nbsp;
+                        <span *ngIf="key.name.invalid && key.name.errors.required">Full Name required !</span>
+                        <span *ngIf="key.name.invalid && key.name.errors.minlength">Full Name must have at least 5 characters !</span>
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-form-label col-md-3 text-right">Email Address</label>
+                <div class="col-md-8">
+                    <input type="text" id="email" class="form-control"
+                           placeholder="e.g. example@email.com"
+                           [ngClass]="key.email.invalid && (key.email.dirty || key.email.touched) ? 'border-danger' : ''"
+                           formControlName="email">
+                    <small class="text-danger" *ngIf="key.email.invalid && (key.email.dirty || key.email.touched)">
+                        <fa-icon *ngIf="key.email.invalid" [icon]="faExclamationCircle"></fa-icon>&nbsp;
+                        <span *ngIf="key.email.invalid && key.email.errors.required">Email required !</span>
+                        <span *ngIf="key.email.invalid && key.email.errors.email">Invalid Email format !</span>
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="message" class="col-form-label col-md-3 text-right">Message</label>
+                <div class="col-md-8">
+                    <textarea id="message" class="form-control" style="min-height: 150px;"
+                              placeholder="Type in your message here..."
+                              formControlName="message"
+                              [ngClass]="key.message.invalid && (key.message.dirty || key.message.touched) ? 'border-danger' : ''"></textarea>
+                    <small class="text-danger" *ngIf="key.message.invalid && (key.message.dirty || key.message.touched)">
+                        <fa-icon *ngIf="key.message.invalid" [icon]="faExclamationCircle"></fa-icon>&nbsp;
+                        <span *ngIf="key.message.invalid && key.message.errors.required">Message required !</span>
+                        <span *ngIf="key.message.invalid && key.message.errors.minlength">Message must have at least 80 characters !</span>
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row text-right">
+                <label class="col-form-label col-md-3"></label>
+                <div class="col-md-8">
+                    <button type="button" class="btn btn-primary" [disabled]="!contactMeForm.valid">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<app-footer></app-footer>
