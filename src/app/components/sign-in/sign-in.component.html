@@ -22,8 +22,8 @@
             <label for="password" class="sr-only">Password</label>
             <small class="text-danger" *ngIf="key.pwd.invalid && (key.pwd.dirty || key.pwd.touched)">
                 <fa-icon *ngIf="key.pwd.invalid" [icon]="faExclamationCircle"></fa-icon>&nbsp;
-                <span *ngIf="key.pwd.invalid && key.pwd.errors.required">Name required !</span>
-                <span *ngIf="key.pwd.invalid && key.pwd.errors.minlength">Name must have at least 5 characters !</span>
+                <span *ngIf="key.pwd.invalid && key.pwd.errors.required">Password required !</span>
+                <span *ngIf="key.pwd.invalid && key.pwd.errors.minlength">Password must have at least 6 characters !</span>
             </small>
             <input id="password" type="password" class="form-control" placeholder="Password"
                    [ngClass]="key.pwd.invalid && (key.pwd.dirty || key.pwd.touched) ? 'border-danger' : ''"
