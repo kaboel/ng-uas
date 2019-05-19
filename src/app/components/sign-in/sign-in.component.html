@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         <form class="col-md-4" [formGroup]="loginForm">
             <label for="email" class="sr-only">Email</label>
-            <small class="text-danger" *ngIf="key.email.dirty || key.email.touched">
+            <small class="text-danger" *ngIf="key.email.invalid && (key.email.dirty || key.email.touched)">
                 <fa-icon *ngIf="key.email.invalid" [icon]="faExclamationCircle"></fa-icon>&nbsp;
                 <span *ngIf="key.email.invalid && key.email.errors.required">Email required !</span>
                 <span *ngIf="key.email.invalid && key.email.errors.email">Invalid Email format !</span>
@@ -20,15 +20,17 @@
                    [ngClass]="key.email.invalid && (key.email.dirty || key.email.touched) ? 'border-danger' : ''"
                    formControlName="email">
             <label for="password" class="sr-only">Password</label>
-            <small class="text-danger" *ngIf="key.pwd.dirty || key.pwd.touched">
-                <fa-icon [icon]="faExclamationCircle"></fa-icon>&nbsp;
-                <span *ngIf="key.pwd.invalid && key.pwd.errors.required">Password required !</span>
-                <span *ngIf="key.pwd.invalid && key.pwd.errors.minlength">Password must have at least 6 characters !</span>
+            <small class="text-danger" *ngIf="key.pwd.invalid && (key.pwd.dirty || key.pwd.touched)">
+                <fa-icon *ngIf="key.pwd.invalid" [icon]="faExclamationCircle"></fa-icon>&nbsp;
+                <span *ngIf="key.pwd.invalid && key.pwd.errors.required">Name required !</span>
+                <span *ngIf="key.pwd.invalid && key.pwd.errors.minlength">Name must have at least 5 characters !</span>
             </small>
             <input id="password" type="password" class="form-control" placeholder="Password"
                    [ngClass]="key.pwd.invalid && (key.pwd.dirty || key.pwd.touched) ? 'border-danger' : ''"
                    formControlName="pwd">
-            <button type="submit" class="btn btn-primary btn-block mt-4" [disabled]="!loginForm.valid">
+            <button type="submit" class="btn btn-primary btn-block mt-4"
+                    [disabled]="!loginForm.valid"
+                    (click)="authService.signIn(key.email.value, key.pwd.value)">
                 Sign In
             </button>
             <div class="text-center">

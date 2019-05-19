@@ -35,5 +35,11 @@ export class SignInComponent implements OnInit {
         });
     }
 
-    get key() { return this.loginForm.controls; }
+    get key() {
+        return this.loginForm.controls;
+    }
+
+    onSubmit() {
+        this.authService.signIn(this.key.email.value, this.key.pwd.value);
+    }
 }
