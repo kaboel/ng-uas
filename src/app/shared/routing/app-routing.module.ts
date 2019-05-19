@@ -8,12 +8,14 @@ import {VerifyEmailComponent} from '../../components/verify-email/verify-email.c
 import {ContactMeComponent} from '../../components/contact-me/contact-me.component';
 import {InnerGuard} from '../../core/guard/inner.guard';
 import {AuthGuard} from '../../core/guard/auth.guard';
+import {FriendComponent} from '../../components/friend/friend.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'login', component: SignInComponent, canActivate: [InnerGuard]},
     {path: 'register', component: SignUpComponent, canActivate: [InnerGuard]},
     {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+    {path: 'friend', component: FriendComponent, canActivate: [AuthGuard]},
     {path: 'forgot', component: ForgotPasswordComponent, canActivate: [InnerGuard]},
     {path: 'verify', component: VerifyEmailComponent, canActivate: [InnerGuard]},
     {path: 'contact', component: ContactMeComponent}
