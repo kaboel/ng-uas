@@ -37,7 +37,7 @@ export class AuthService {
                 if (result.user.emailVerified) {
                     this.ngZone.run(() => {
                         this.router.navigate(['dashboard']);
-                        window.alert('Welcome' + this.userData.displayName);
+                        window.alert('Welcome' + result.user.displayName ? result.user.displayName : 'User');
                     });
                 } else {
                     window.alert('You are not verified ! Please check your email then follow the instructions.');
@@ -91,10 +91,11 @@ export class AuthService {
     authLogin(provider) {
         return this.afAuth.auth.signInWithPopup(provider)
             .then((result) => {
+                this.setUserData(result.user);
                 this.ngZone.run(() => {
                     this.router.navigate(['dashboard']);
+                    window.alert('Welcome' + this.userData.displayName ? this.userData.displayName : 'User');
                 });
-                this.setUserData(result.user);
             }).catch((error) => {
                 window.alert(error.message);
             });

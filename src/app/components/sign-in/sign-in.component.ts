@@ -42,4 +42,8 @@ export class SignInComponent implements OnInit {
     onSubmit() {
         this.authService.signIn(this.key.email.value, this.key.pwd.value);
     }
+
+    googleSignIn() {
+        this.authService.googleAuth();
+    }
 }

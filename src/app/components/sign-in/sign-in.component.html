@@ -30,7 +30,7 @@
                    formControlName="pwd">
             <button type="submit" class="btn btn-primary btn-block mt-4"
                     [disabled]="!loginForm.valid"
-                    (click)="authService.signIn(key.email.value, key.pwd.value)">
+                    (click)="onSubmit()">
                 Sign In
             </button>
             <div class="text-center">
@@ -47,7 +47,7 @@
             <a href="#" routerLink="/register">Create Now!</a>
             <div class="mt-3">
                 Or Sign In With <br>
-                <button type="button" class="btn btn-google mt-2" (click)="authService.googleAuth()">
+                <button type="button" class="btn btn-google mt-2" (click)="googleSignIn()">
                     <fa-icon [icon]="faGoogle"></fa-icon>&nbsp;&nbsp;|&nbsp;
                     <b>Google</b>
                 </button>

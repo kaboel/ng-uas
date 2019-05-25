@@ -27,7 +27,7 @@
         <ul class="navbar-nav" *ngIf="authService.isLoggedIn">
             <li class="nav-item">
                 <a class="nav-link text-danger" href="#"
-                   (click)="authService.signOut()">
+                   (click)="onSignOut()">
                     Logout&nbsp;<fa-icon [icon]="faSignOut"></fa-icon>
                 </a>
             </li>
