@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Friend} from '../../shared/models/friend';
-import {faTrash} from '@fortawesome/free-solid-svg-icons/faTrash';
 import {FriendService} from '../../core/services/friend.service';
+import {faTrash} from '@fortawesome/free-solid-svg-icons/faTrash';
 import {faSearch} from '@fortawesome/free-solid-svg-icons/faSearch';
 
 @Component({
@@ -11,6 +11,7 @@ import {faSearch} from '@fortawesome/free-solid-svg-icons/faSearch';
 })
 export class FriendListComponent implements OnInit {
 
+    term: string;
     friends: Friend[];
     faTrash = faTrash;
     faSearch = faSearch;
